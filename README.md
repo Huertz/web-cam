@@ -2,6 +2,8 @@
 
 Python desktop app that opens the webcam, detects faces, and classifies emotions in real time using FER + OpenCV.
 
+**Requires Python 3.10+**
+
 ## Setup
 
 ```bash
@@ -10,18 +12,21 @@ source venv/bin/activate          # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
+> **Note (fer 25.x):** This project pins `fer==25.10.3`. At this version the public `from fer import FER` raises `ImportError`; `emotion.py` imports from `fer.fer` directly. Do not upgrade `fer` without verifying compatibility.
+
 > First run downloads TensorFlow model weights (~500 MB). This is a one-time operation.
 
 ## Run
 
 ```bash
-python main.py
+python3 main.py
 ```
 
 | Key | Action |
 |-----|--------|
 | `q` | Quit |
 | `ESC` | Quit |
+| `Ctrl+C` | Quit |
 
 ## macOS camera permissions
 
