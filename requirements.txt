@@ -1,5 +1,5 @@
 opencv-python>=4.8,<5
-fer>=22.5
+fer==25.10.3
 tensorflow>=2.13
 mtcnn>=0.1.1
 numpy>=1.24

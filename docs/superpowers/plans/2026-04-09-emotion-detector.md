@@ -203,13 +203,13 @@ Create `tests/test_emotion.py`:
 import pytest
 from unittest.mock import MagicMock, patch
 import numpy as np
+from emotion import EmotionDetector
 
 
 def test_detect_returns_empty_list_when_no_faces():
     mock_fer = MagicMock()
     mock_fer.detect_emotions.return_value = []
-    with patch("fer.FER", return_value=mock_fer):
-        from emotion import EmotionDetector
+    with patch("emotion.FER", return_value=mock_fer):
         detector = EmotionDetector(use_mtcnn=False)
         frame = np.zeros((480, 640, 3), dtype=np.uint8)
         result = detector.detect(frame)
@@ -227,8 +227,7 @@ def test_detect_returns_correct_structure():
             },
         }
     ]
-    with patch("fer.FER", return_value=mock_fer):
-        from emotion import EmotionDetector
+    with patch("emotion.FER", return_value=mock_fer):
         detector = EmotionDetector(use_mtcnn=False)
         frame = np.zeros((480, 640, 3), dtype=np.uint8)
         result = detector.detect(frame)
@@ -249,8 +248,7 @@ def test_detect_picks_dominant_emotion():
             },
         }
     ]
-    with patch("fer.FER", return_value=mock_fer):
-        from emotion import EmotionDetector
+    with patch("emotion.FER", return_value=mock_fer):
         detector = EmotionDetector(use_mtcnn=False)
         frame = np.zeros((480, 640, 3), dtype=np.uint8)
         result = detector.detect(frame)
