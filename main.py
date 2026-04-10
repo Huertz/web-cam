@@ -16,7 +16,7 @@ def main():
         sys.exit(1)
 
     detector = EmotionDetector()
-    prev_time = time.time()
+    prev_time = time.monotonic()
 
     try:
         while True:
@@ -27,8 +27,9 @@ def main():
 
             results = detector.detect(frame)
 
-            now = time.time()
-            fps = 1.0 / (now - prev_time) if (now - prev_time) > 0 else 0.0
+            now = time.monotonic()
+            delta = now - prev_time
+            fps = 1.0 / delta if delta > 0 else 0.0
             prev_time = now
 
             draw_overlay(frame, results, fps)
