@@ -20,5 +20,6 @@ class EmotionDetector:
                 "box": r["box"],
                 "emotion": dominant,
                 "score": emotions[dominant],
+                "emotions": emotions,
             })
         return results
