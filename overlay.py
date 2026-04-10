@@ -17,15 +17,18 @@ _THICKNESS = 2
 
 
 def _draw_corners(frame, x, y, w, h, color):
+    arm = min(_CORNER_LEN, w // 2, h // 2)
+    if arm <= 0:
+        return
     pts = [
-        ((x, y), (x + _CORNER_LEN, y)),
-        ((x, y), (x, y + _CORNER_LEN)),
-        ((x + w, y), (x + w - _CORNER_LEN, y)),
-        ((x + w, y), (x + w, y + _CORNER_LEN)),
-        ((x, y + h), (x + _CORNER_LEN, y + h)),
-        ((x, y + h), (x, y + h - _CORNER_LEN)),
-        ((x + w, y + h), (x + w - _CORNER_LEN, y + h)),
-        ((x + w, y + h), (x + w, y + h - _CORNER_LEN)),
+        ((x, y), (x + arm, y)),
+        ((x, y), (x, y + arm)),
+        ((x + w, y), (x + w - arm, y)),
+        ((x + w, y), (x + w, y + arm)),
+        ((x, y + h), (x + arm, y + h)),
+        ((x, y + h), (x, y + h - arm)),
+        ((x + w, y + h), (x + w - arm, y + h)),
+        ((x + w, y + h), (x + w, y + h - arm)),
     ]
     for p1, p2 in pts:
         cv2.line(frame, p1, p2, color, _THICKNESS)
